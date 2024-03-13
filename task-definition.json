@@ -1,0 +1,56 @@
+{
+    "family": "ui-deploy",
+    "containerDefinitions": [
+        {
+            "name": "ui",
+            "image": "103886749662.dkr.ecr.us-east-1.amazonaws.com/ui-image:latest",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "name": "ui-8000-tcp",
+                    "containerPort": 8000,
+                    "hostPort": 8000,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "ulimits": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "/ecs/ui-deploy",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            },
+            "healthCheck": {
+                "command": [
+                    "CMD-SHELL",
+                    "curl -f http://localhost/ || exit 1"
+                ],
+                "interval": 30,
+                "timeout": 5,
+                "retries": 3
+            },
+            "systemControls": []
+        }
+    ],
+    "executionRoleArn": "arn:aws:iam::103886749662:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "3072",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    }
+}
