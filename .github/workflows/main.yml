@@ -50,5 +50,5 @@ jobs:
 
       - name: tag images
         run: |
-          docker tag Frontend:latest 103886749662.dkr.ecr.us-east-1.amazonaws.com/ui-image:latest
+          docker tag frontend:latest 103886749662.dkr.ecr.us-east-1.amazonaws.com/ui-image:latest
           docker push 103886749662.dkr.ecr.us-east-1.amazonaws.com/ui-image:latest
