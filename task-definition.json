@@ -1,13 +1,13 @@
 {
-    "family": "ui-deploy",
+    "family": "ui-image-deploy",
     "containerDefinitions": [
         {
-            "name": "ui",
-            "image": "103886749662.dkr.ecr.us-east-1.amazonaws.com/ui-image:latest",
+            "name": "ui-image",
+            "image": "103886749662.dkr.ecr.us-east-1.amazonaws.com/ui-image-k:latest",
             "cpu": 0,
             "portMappings": [
                 {
-                    "name": "ui-8000-tcp",
+                    "name": "ui-image-8000-tcp",
                     "containerPort": 8000,
                     "hostPort": 8000,
                     "protocol": "tcp",
@@ -24,20 +24,11 @@
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/ui-deploy",
+                    "awslogs-group": "/ecs/ui-image-deploy",
                     "awslogs-region": "us-east-1",
                     "awslogs-stream-prefix": "ecs"
                 },
                 "secretOptions": []
-            },
-            "healthCheck": {
-                "command": [
-                    "CMD-SHELL",
-                    "curl -f http://localhost/ || exit 1"
-                ],
-                "interval": 30,
-                "timeout": 5,
-                "retries": 3
             },
             "systemControls": []
         }
